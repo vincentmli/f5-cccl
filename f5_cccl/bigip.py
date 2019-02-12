@@ -394,6 +394,7 @@ class BigIPProxy(object):
         LOGGER.debug("Retrieving arps from BIG-IP /%s...", self._partition)
         arps = self._bigip.tm.net.arps.get_collection(
             requests_params={"params": query})
+        LOGGER.info("Retrieving arps %s...", arps)
 
         # Retrieve the list of tunnels
         # WORKAROUND: We don't pass the request_params in the fdb tunnel case,
@@ -410,6 +411,7 @@ class BigIPProxy(object):
             a.name: self._create_resource(IcrArp, a)
             for a in arps if self._manageable_resource(a)
         }
+        LOGGER.info("Retrieving self._arps %s...", self._arps)
 
         # Refresh the tunnel cache
         self._fdb_tunnels = {
