@@ -473,8 +473,8 @@ class ServiceConfigDeployer(object):
         LOGGER.debug("Getting arp tasks...")
         existing = self._bigip.get_arps()
         desired = desired_config.get('arps', dict())
-        LOGGER.info("existing arp %s", existing)
-        LOGGER.info("desired arp %s", desired)
+        LOGGER.info("existing arp {0}".format(existing))
+        LOGGER.info("desired arp {0}".format(desired))
         (create_arps, update_arps, delete_arps) = (
             self._get_resource_tasks(existing, desired)[0:3])
 
